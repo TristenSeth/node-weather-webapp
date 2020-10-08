@@ -60,7 +60,7 @@ app.get('/weather', (req, res) => {
         }
 
         //no error, so we have values for lat, long and place_name. Use for forecast
-        forecast(lat, long, (forecast_error, {weather_description, temp, real_feel} = {}) => {
+        forecast(lat, long, (forecast_error, {weather_description, temp, real_feel, humidity} = {}) => {
             if (forecast_error) {
                 return res.send({
                     error: forecast_error
@@ -69,7 +69,7 @@ app.get('/weather', (req, res) => {
             res.send({
                 address: req.query.address, 
                 forecast: "Current weather for " + place_name + " is " + weather_description 
-                + " with a temperature of " + temp + " and a real feel of " + real_feel,             
+                + " with a temperature of " + temp + " and a real feel of " + real_feel + " and a humidity level of " + humidity             
             })
         })
     })

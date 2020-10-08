@@ -2,7 +2,7 @@ const request = require('postman-request')
 
 const forecast = (lat, long, callback) => {
     const url = 'http://api.weatherstack.com/current?access_key=aa9a4070a69abf229b5add8548b68638&query=' + encodeURIComponent(lat) + ',' + encodeURIComponent(long) + '&units=f'
-
+    console.log(url)
     request({url, json: true}, (error, {body}) => {
         if (error) {
             callback('Unable to fetch weather data.', undefined)
@@ -12,11 +12,12 @@ const forecast = (lat, long, callback) => {
             const weather_description = body.current.weather_descriptions[0]
             const temp = body.current.temperature
             const real_feel = body.current.feelslike
-
+            const humidity = body.current.humidity
             callback(undefined, {
                 weather_description,
                 temp,
-                real_feel
+                real_feel,
+                humidity
             })
         }
     })
