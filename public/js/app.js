@@ -1,6 +1,3 @@
-console.log('This is in the js folder')
-
-
 
 //connect to the search form in index.hbs
 const weather_form = document.querySelector('form')
